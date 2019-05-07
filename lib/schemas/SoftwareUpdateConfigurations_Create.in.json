@@ -1,0 +1,493 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._]+$"
+        },
+        "automationAccountName": {
+            "required": true,
+            "type": "string"
+        },
+        "softwareUpdateConfigurationName": {
+            "required": true,
+            "type": "string"
+        },
+        "clientRequestId": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Software update configuration properties.",
+            "properties": {
+                "id": {
+                    "description": "Resource Id.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Resource name.",
+                    "readOnly": true,
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Software update configuration properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "createdBy": {
+                            "description": "CreatedBy property, which only appears in the response.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "creationTime": {
+                            "description": "Creation time of the resource, which only appears in the response.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "error": {
+                            "description": "Error response of an operation failure",
+                            "properties": {
+                                "code": {
+                                    "description": "Error code",
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "description": "Error message indicating why the operation failed.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "lastModifiedBy": {
+                            "description": "LastModifiedBy property, which only appears in the response.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "lastModifiedTime": {
+                            "description": "Last time resource was modified, which only appears in the response.",
+                            "format": "date-time",
+                            "readOnly": true,
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state for the software update configuration, which only appears in the response.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "scheduleInfo": {
+                            "description": "Schedule information for the Software update configuration",
+                            "properties": {
+                                "advancedSchedule": {
+                                    "description": "Gets or sets the advanced schedule.",
+                                    "properties": {
+                                        "monthDays": {
+                                            "description": "Days of the month that the job should execute on. Must be between 1 and 31.",
+                                            "items": {
+                                                "format": "int32",
+                                                "type": "integer",
+                                                "nullable": false
+                                            },
+                                            "type": "array"
+                                        },
+                                        "monthlyOccurrences": {
+                                            "description": "Occurrences of days within a month.",
+                                            "items": {
+                                                "description": "The properties of the create advanced schedule monthly occurrence.",
+                                                "properties": {
+                                                    "day": {
+                                                        "description": "Day of the occurrence. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
+                                                        "enum": [
+                                                            "Monday",
+                                                            "Tuesday",
+                                                            "Wednesday",
+                                                            "Thursday",
+                                                            "Friday",
+                                                            "Saturday",
+                                                            "Sunday"
+                                                        ],
+                                                        "type": "string",
+                                                        "x-ms-enum": {
+                                                            "modelAsString": true,
+                                                            "name": "ScheduleDay"
+                                                        }
+                                                    },
+                                                    "occurrence": {
+                                                        "description": "Occurrence of the week within the month. Must be between 1 and 5",
+                                                        "format": "int32",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "weekDays": {
+                                            "description": "Days of the week that the job should execute on.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "creationTime": {
+                                    "description": "Gets or sets the creation time.",
+                                    "format": "date-time",
+                                    "type": "string",
+                                    "nullable": false
+                                },
+                                "description": {
+                                    "description": "Gets or sets the description.",
+                                    "type": "string"
+                                },
+                                "expiryTime": {
+                                    "description": "Gets or sets the end time of the schedule.",
+                                    "format": "date-time",
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "expiryTimeOffsetMinutes": {
+                                    "description": "Gets or sets the expiry time's offset in minutes.",
+                                    "format": "double",
+                                    "type": "number",
+                                    "nullable": false
+                                },
+                                "frequency": {
+                                    "description": "Gets or sets the frequency of the schedule.",
+                                    "enum": [
+                                        "OneTime",
+                                        "Day",
+                                        "Hour",
+                                        "Week",
+                                        "Month"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "ScheduleFrequency"
+                                    }
+                                },
+                                "interval": {
+                                    "description": "Gets or sets the interval of the schedule.",
+                                    "type": "integer"
+                                },
+                                "isEnabled": {
+                                    "default": false,
+                                    "description": "Gets or sets a value indicating whether this schedule is enabled.",
+                                    "type": "boolean"
+                                },
+                                "lastModifiedTime": {
+                                    "description": "Gets or sets the last modified time.",
+                                    "format": "date-time",
+                                    "type": "string",
+                                    "nullable": false
+                                },
+                                "nextRun": {
+                                    "description": "Gets or sets the next run time of the schedule.",
+                                    "format": "date-time",
+                                    "type": "string",
+                                    "nullable": true
+                                },
+                                "nextRunOffsetMinutes": {
+                                    "description": "Gets or sets the next run time's offset in minutes.",
+                                    "format": "double",
+                                    "type": "number",
+                                    "nullable": false
+                                },
+                                "startTime": {
+                                    "description": "Gets or sets the start time of the schedule.",
+                                    "format": "date-time",
+                                    "type": "string",
+                                    "nullable": false
+                                },
+                                "startTimeOffsetMinutes": {
+                                    "description": "Gets the start time's offset in minutes.",
+                                    "format": "double",
+                                    "readOnly": true,
+                                    "type": "number",
+                                    "nullable": false
+                                },
+                                "timeZone": {
+                                    "description": "Gets or sets the time zone of the schedule.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "tasks": {
+                            "description": "Tasks information for the Software update configuration.",
+                            "properties": {
+                                "postTask": {
+                                    "description": "Post task properties.",
+                                    "properties": {
+                                        "parameters": {
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "description": "Gets or sets the parameters of the task.",
+                                            "type": "object"
+                                        },
+                                        "source": {
+                                            "description": "Gets or sets the name of the runbook.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "preTask": {
+                                    "description": "Pre task properties.",
+                                    "properties": {
+                                        "parameters": {
+                                            "additionalProperties": {
+                                                "type": "string"
+                                            },
+                                            "description": "Gets or sets the parameters of the task.",
+                                            "type": "object"
+                                        },
+                                        "source": {
+                                            "description": "Gets or sets the name of the runbook.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "updateConfiguration": {
+                            "description": "update specific properties for the Software update configuration",
+                            "properties": {
+                                "azureVirtualMachines": {
+                                    "description": "List of azure resource Ids for azure virtual machines targeted by the software update configuration.",
+                                    "items": {
+                                        "description": "Azure Resource Manager Id for a virtual machine.",
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "duration": {
+                                    "description": "Maximum time allowed for the software update configuration run. Duration needs to be specified using the format PT[n]H[n]M[n]S as per ISO8601",
+                                    "format": "duration",
+                                    "type": "string"
+                                },
+                                "linux": {
+                                    "description": "Linux specific update configuration.",
+                                    "properties": {
+                                        "excludedPackageNameMasks": {
+                                            "description": "packages excluded from the software update configuration.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "includedPackageClassifications": {
+                                            "description": "Update classifications included in the software update configuration.",
+                                            "enum": [
+                                                "Unclassified",
+                                                "Critical",
+                                                "Security",
+                                                "Other"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "modelAsString": true,
+                                                "name": "LinuxUpdateClasses"
+                                            }
+                                        },
+                                        "includedPackageNameMasks": {
+                                            "description": "packages included from the software update configuration.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "rebootSetting": {
+                                            "description": "Reboot setting for the software update configuration.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "nonAzureComputerNames": {
+                                    "description": "List of names of non-azure machines targeted by the software update configuration.",
+                                    "items": {
+                                        "description": "Name of Non-Azure OMS Computer.",
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "operatingSystem": {
+                                    "description": "operating system of target machines",
+                                    "enum": [
+                                        "Windows",
+                                        "Linux"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": false,
+                                        "name": "OperatingSystemType"
+                                    }
+                                },
+                                "targets": {
+                                    "description": "Group targets for the software update configuration.",
+                                    "properties": {
+                                        "azureQueries": {
+                                            "description": "List of Azure queries in the software update configuration.",
+                                            "items": {
+                                                "type": "object",
+                                                "description": "Azure query for the update configuration.",
+                                                "properties": {
+                                                    "locations": {
+                                                        "description": "List of locations to scope the query to.",
+                                                        "items": {
+                                                            "description": "Location to scope the query to.",
+                                                            "type": "string"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "scope": {
+                                                        "description": "List of Subscription or Resource Group ARM Ids.",
+                                                        "items": {
+                                                            "description": "Subscription or Resource Group ARM Id.",
+                                                            "type": "string"
+                                                        },
+                                                        "type": "array"
+                                                    },
+                                                    "tagSettings": {
+                                                        "description": "Tag settings for the VM.",
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "filterOperator": {
+                                                                "description": "Filter VMs by Any or All specified tags.",
+                                                                "enum": [
+                                                                    "All",
+                                                                    "Any"
+                                                                ],
+                                                                "type": "string",
+                                                                "x-ms-enum": {
+                                                                    "modelAsString": false,
+                                                                    "name": "TagOperators"
+                                                                }
+                                                            },
+                                                            "tags": {
+                                                                "additionalProperties": {
+                                                                    "items": {
+                                                                        "description": "List of tag values for a tag.",
+                                                                        "type": "string"
+                                                                    },
+                                                                    "type": "array"
+                                                                },
+                                                                "description": "Dictionary of tags with its list of values.",
+                                                                "type": "object"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "type": "array"
+                                        },
+                                        "nonAzureQueries": {
+                                            "description": "List of non Azure queries in the software update configuration.",
+                                            "items": {
+                                                "type": "object",
+                                                "description": "Non Azure query for the update configuration.",
+                                                "properties": {
+                                                    "functionAlias": {
+                                                        "description": "Log Analytics Saved Search name.",
+                                                        "type": "string"
+                                                    },
+                                                    "workspaceId": {
+                                                        "description": "Workspace Id for Log Analytics in which the saved Search is resided.",
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            },
+                                            "type": "array"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "windows": {
+                                    "description": "Windows specific update configuration.",
+                                    "properties": {
+                                        "excludedKbNumbers": {
+                                            "description": "KB numbers excluded from the software update configuration.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "includedKbNumbers": {
+                                            "description": "KB numbers included from the software update configuration.",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "type": "array"
+                                        },
+                                        "includedUpdateClassifications": {
+                                            "description": "Update classification included in the software update configuration. A comma separated string with required values",
+                                            "enum": [
+                                                "Unclassified",
+                                                "Critical",
+                                                "Security",
+                                                "UpdateRollup",
+                                                "FeaturePack",
+                                                "ServicePack",
+                                                "Definition",
+                                                "Tools",
+                                                "Updates"
+                                            ],
+                                            "type": "string",
+                                            "x-ms-enum": {
+                                                "modelAsString": true,
+                                                "name": "WindowsUpdateClasses"
+                                            }
+                                        },
+                                        "rebootSetting": {
+                                            "description": "Reboot setting for the software update configuration.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "required": [
+                                "operatingSystem"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "updateConfiguration",
+                        "scheduleInfo"
+                    ]
+                },
+                "type": {
+                    "description": "Resource type",
+                    "readOnly": true,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object",
+            "x-ms-azure-resource": true
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
